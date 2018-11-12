@@ -7,9 +7,6 @@
  * }
  */
 
-
-
-
 public class Solution {
     /*
      * @param root: the root of binary tree
