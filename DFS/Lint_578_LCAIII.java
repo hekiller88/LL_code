@@ -11,7 +11,7 @@
  * }
  */
 
-
+//Method 1: global var
 public class Solution {
     /*
      * @param root: The root of the binary tree.
@@ -57,5 +57,64 @@ public class Solution {
             return right;
         
         return null;
+    }
+}
+
+
+
+
+//Method 2: res_type
+public class Solution {
+    /*
+     * @param root: The root of the binary tree.
+     * @param A: A TreeNode
+     * @param B: A TreeNode
+     * @return: Return the LCA of the two nodes.
+     */
+     
+    class ResultType {
+        boolean hasA, hasB;
+        TreeNode node;
+        
+        ResultType (boolean a, boolean b, TreeNode n) {
+            hasA = a;
+            hasB = b;
+            node = n;
+        }
+    }
+    
+    public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode A, TreeNode B) {
+        // write your code here
+        ResultType res = helper(root, A, B);
+        
+        if (res.hasA && res.hasB)
+            return res.node;
+            
+        return null;
+    }
+    
+    private ResultType helper(TreeNode root, TreeNode A, TreeNode B) {
+        if (root == null)
+            return new ResultType(false, false, null);
+            
+        ResultType left = helper(root.left, A, B);
+        ResultType right = helper(root.right, A, B);
+        
+        boolean hasA = left.hasA || right.hasA || root == A;
+        boolean hasB = left.hasB || right.hasB || root == B;
+        
+        if (root == A || root == B) 
+            return new ResultType(hasA, hasB, root);
+            
+        if (left.node != null && right.node != null)
+            return new ResultType(hasA, hasB, root);
+        
+        if (left.node != null)
+            return new ResultType(hasA, hasB, left.node);
+            
+        if (right.node != null)
+            return new ResultType(hasA, hasB, right.node);
+            
+        return new ResultType(hasA, hasB, null);
     }
 }
