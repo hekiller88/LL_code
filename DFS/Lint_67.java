@@ -37,7 +37,30 @@ public class Solution {
     }
 }
 
-//M3, stack traverse, complex ver
+// M3, stack traverse, more simple v2
+public class Solution {
+    /**
+     * @param root: The root of binary tree.
+     * @return: Inorder in ArrayList which contains node values.
+     */
+    public ArrayList<Integer> inorderTraversal(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        ArrayList<Integer> result = new ArrayList<Integer>();
+        TreeNode curt = root;
+        while (curt != null || !stack.empty()) {
+            while (curt != null) {
+                stack.add(curt);
+                curt = curt.left;
+            }
+            curt = stack.pop();
+            result.add(curt.val);
+            curt = curt.right;
+        }
+        return result;
+    }
+}
+
+// M4, stack traverse, complex ver
 public class Solution {
     /**
      * @param root: A Tree
