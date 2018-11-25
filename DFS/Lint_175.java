@@ -1,6 +1,6 @@
 // https://www.lintcode.com/problem/invert-binary-tree/description
 
-// M1, traversal withou recursive
+// M1, traversal without recursive
 public class Solution {
     /**
      * @param root: a TreeNode, the root of the binary tree
