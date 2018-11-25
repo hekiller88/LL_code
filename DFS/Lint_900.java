@@ -23,3 +23,36 @@ public class Solution {
         return ans;
     }
 }
+
+// M2. d&c
+public class Solution {
+    /**
+     * @param root: the given BST
+     * @param target: the given target
+     * @return: the value in the BST that is closest to the target
+     */
+    public int closestValue(TreeNode root, double target) {
+        // if (root == null) {
+        //     return Integer.MIN_VALUE;
+        // }
+    
+        if (target < root.val) {
+            if (root.left != null) {
+                int left = closestValue(root.left, target);
+                if (Math.abs(left - target) < Math.abs(root.val - target)) {
+                    return left; 
+                }
+            } 
+            
+        } else if (target > root.val) {
+            if (root.right != null) {
+                int right = closestValue(root.right, target);
+                if (Math.abs(right - target) < Math.abs(root.val - target)) {
+                    return right; 
+                }
+            } 
+        } 
+        
+        return root.val;
+    }
+}
