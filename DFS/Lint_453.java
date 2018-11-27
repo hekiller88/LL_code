@@ -11,7 +11,7 @@
  * }
  */
 
-//M1 - inorder + global pre node
+//M1 - preorder + global pre node
 public class Solution {
     /**
      * @param root: a TreeNode, the root of the binary tree
@@ -37,7 +37,7 @@ public class Solution {
     
 }
 
-// M2: inorder + List<TreeNode>
+// M2: preorder + List<TreeNode>
 
 // M3: Divide & Conquer
 // Link Left Subtree's last Node with right Subtree root, 
