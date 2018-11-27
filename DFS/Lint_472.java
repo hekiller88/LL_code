@@ -1,6 +1,6 @@
 // https://www.lintcode.com/problem/binary-tree-path-sum-iii/description
 
-// M1, personal solution, using template
+// M1, personal solution, using template + hset avoid go back
 public class Solution {
     /*
      * @param root: the root of binary tree
