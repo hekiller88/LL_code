@@ -1,12 +1,57 @@
-/**
- * Definition of ParentTreeNode:
- * 
- * class ParentTreeNode {
- *     public int val;
- *     public ParentTreeNode parent, left, right;
- * }
- */
+// https://www.lintcode.com/problem/binary-tree-path-sum-iii/description
 
+// M1, personal solution, using template
+public class Solution {
+    /*
+     * @param root: the root of binary tree
+     * @param target: An integer
+     * @return: all valid paths
+     */
+    public List<List<Integer>> binaryTreePathSum3(ParentTreeNode root, int target) {
+        List<List<Integer>> ret = new ArrayList<>();
+        
+        if (root != null)
+            traverse(root, target, ret);
+        
+        return ret;
+    }
+    
+    private void traverse(ParentTreeNode root, 
+                          int target, 
+                          List<List<Integer>> ret) {
+        if (root == null)
+            return;
+        
+        dfs(new HashSet<>(), root, target, new ArrayList<>(), ret);
+        
+        traverse(root.left, target, ret);
+        traverse(root.right, target, ret);
+    }
+    
+    private void dfs(Set<ParentTreeNode> hset, 
+                     ParentTreeNode root, 
+                     int remain, 
+                     List<Integer> path,
+                     List<List<Integer>> ret) {
+        if (root == null || hset.contains(root))
+            return;
+            
+        path.add(root.val);
+        hset.add(root);
+        remain -= root.val;
+        if (remain == 0) {
+            ret.add(new ArrayList<>(path));
+        }
+        
+        dfs(hset, root.parent, remain, path, ret);
+        dfs(hset, root.left, remain, path, ret);
+        dfs(hset, root.right, remain, path, ret);
+        
+        path.remove(path.size() - 1);
+    }
+}
+
+// M2, lintcode other solution
 public class Solution {
     /*
      * @param root: the root of binary tree
