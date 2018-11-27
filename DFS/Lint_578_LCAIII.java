@@ -60,10 +60,62 @@ public class Solution {
     }
 }
 
+// M3, personal brutal, list 2 paths,
+// notice: special case {1}, 1, 1
+public class Solution {
+    /*
+     * @param root: The root of the binary tree.
+     * @param A: A TreeNode
+     * @param B: A TreeNode
+     * @return: Return the LCA of the two nodes.
+     */
+     
+    boolean hasA = false;
+    boolean hasB = false;
+    
+    public TreeNode lowestCommonAncestor3(TreeNode root, TreeNode A, TreeNode B) {
+        
+        if (root == A && root == B)
+            return root;
+        
+        List<List<TreeNode>> ret = new ArrayList<>();
+        helper(root, A, B, new ArrayList<>(), ret);
+        
+        if (ret.size() != 2)
+            return null;
+            
+        int idx = 0;
+        int minLen = Math.min(ret.get(0).size(), ret.get(1).size());
+        
+        while (idx < minLen && ret.get(0).get(idx) == ret.get(1).get(idx)) {
+            idx++;
+        }
+        
+        return ret.get(0).get(idx - 1);
+    }
+    
+    private void helper(TreeNode root, 
+                        TreeNode A, 
+                        TreeNode B, 
+                        List<TreeNode> path,
+                        List<List<TreeNode>> ret) {
+        if (root == null)
+            return; 
+        
+        path.add(root);
+        
+        if (root == A || root == B) {
+            ret.add(new ArrayList<>(path));
+        }
+            
+        helper(root.left, A, B, path, ret);
+        helper(root.right, A, B, path, ret);
+        
+        path.remove(path.size() - 1);
+    }
+}
 
-
-
-//Method 2: res_type
+//M3: res_type
 public class Solution {
     /*
      * @param root: The root of the binary tree.
