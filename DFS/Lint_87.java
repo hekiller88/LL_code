@@ -46,35 +46,35 @@ public class Solution {
      * @return: The root of the binary search tree after removal.
      */
     public TreeNode removeNode(TreeNode root, int value) {
-        // write your code here
-        if(root == null){
-            return null;
+        if (root == null)
+            return root;
+            
+        if (value < root.val) {
+            root.left = removeNode(root.left, value);
+        } else if (value > root.val) {
+            root.right = removeNode(root.right, value);
+        } else {
+            if (root.left == null && root.right == null)
+                return null;
+            
+            if (root.left == null)
+                return root.right;
+                
+            if (root.right == null)
+                return root.left;
+                
+            //swap with max node in left subtree
+            TreeNode curt = root.left;
+            TreeNode pre = root;
+            while (curt.right != null) {
+                pre = root;
+                curt = curt.right;
+            }
+            
+            root.val = curt.val;
+            if (pre.left == curt) pre.left = null;
+            if (pre.right == curt) pre.right = null;
         }
         
-        if(root.val == value){
-            if(root.left == null && root.right == null){
-                root = null;
-            }else if(root.left != null && root.right != null){
-                int maxLeft = findMax(root.left);
-                root.val = maxLeft;
-                root.left = removeNode(root.left, maxLeft);
-            }else if(root.left == null){
-                root = root.right;
-            }else if(root.right == null){
-                root = root.left;
-            }
-        }else if(root.val > value){
-            root.left = removeNode(root.left, value);
-        }else{
-            root.right = removeNode(root.right, value);
-        }
         return root;
     }
-    
-    private int findMax(TreeNode root){
-        if(root.right == null){
-            return root.val;
-        }
-        return findMax(root.right);
-    }
-}
