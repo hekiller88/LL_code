@@ -1,6 +1,6 @@
 // https://www.lintcode.com/problem/binary-tree-longest-consecutive-sequence/description?_from=ladder&&fromId=1
 
-// M1 top-down w/ global var
+// M1 top-down w/ global var (more like mix, top-down + bottom-up)
 public class Solution {
     /**
      * @param root: the root of binary tree
@@ -27,7 +27,7 @@ public class Solution {
         
     }
     
-// M1 - 2: top-down without global var
+// M1 - 2: top-down without global var (more like mix, top-down + bottom-up)
 
 public int longestConsecutive(TreeNode root) {
     return dfs(root, null, 0);
