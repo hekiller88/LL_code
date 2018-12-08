@@ -35,7 +35,7 @@ public class Solution {
     }
 }
 
-// M2, Vague
+// M2, add the number to the last pos
 public List<List<Integer>> subsetsWithDup(int[] nums) {
         Arrays.sort(nums);
         List<List<Integer>> ans = new ArrayList();
