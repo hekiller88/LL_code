@@ -84,7 +84,7 @@ public class Solution {
         
         for (int c = 0; c < n; c++) 
             for (int r = 0; r <= c; r++) {
-                ret[r][c] = s.charAt(r) == s.charAt(c) && (c - r <= 2 || ret[r + 1][c - 1]);
+                ret[r][c] = s.charAt(r) == s.charAt(c) && (r + 1 >= c - 1 || ret[r + 1][c - 1]);
             }
             
         return ret;
