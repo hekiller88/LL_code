@@ -19,3 +19,15 @@ def queue_time(customers, n):
         heapq.heapreplace(heap, heap[0] + time)
     
     return max(heap)
+
+# closure, nested function can carry parent function's state
+def make_adder(n):
+	def add(x):
+		return x + n
+	return add
+
+plus_3 = make_adder(3)
+plus_5 = make_adder(5)
+
+assert plus_3(4) == 7, "3 + 4 == 7"
+assert plus_5(4) == 9, "5 + 4 == 9"
