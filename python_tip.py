@@ -31,3 +31,6 @@ plus_5 = make_adder(5)
 
 assert plus_3(4) == 7, "3 + 4 == 7"
 assert plus_5(4) == 9, "5 + 4 == 9"
+
+# list(map(func, iterable)) -> foreach
+# list(filter(func, iterable)) -> filter
