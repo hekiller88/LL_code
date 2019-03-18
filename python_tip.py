@@ -35,7 +35,7 @@ assert plus_5(4) == 9, "5 + 4 == 9"
 # list(map(func, iterable)) -> foreach
 # list(filter(func, iterable)) -> filter
 
-# regx
+# regx https://docs.python.org/3/howto/regex.html#regex-howto
 # methchars     . ^ $ * + ? { } [ ] \ | ( )
 #	[] -> range, abc = [a-c], all lowercases = [a-z]
 #	   -> meta in [] not active, e.g. [akm$], '$' means itself in here, [^5] means '^' and '5'
