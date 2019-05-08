@@ -1,4 +1,4 @@
-https://www.lintcode.com/problem/graph-valid-tree/description?_from=ladder&&fromId=1
+# https://www.lintcode.com/problem/graph-valid-tree/description?_from=ladder&&fromId=1
 
 # Method 1: BFS
 class Solution:
@@ -53,36 +53,36 @@ class Solution:
             
         return all(map(union, edges))
     
-    # Method2.2: optimal UnionFind, simple compression
-    class Solution:
-    def validTree(self, n: int, edges: List[List[int]]) -> bool:
-        if len(edges) != n - 1:
-            return False
-        
-        self.parents = {i:i for i in range(n)}
-        self.size = n
-        
-        for u, v in edges:
-            self.union(u, v)
-            
-        return self.size == 1;
-        
-    def find(self, node):
-        path = []
-        while node != self.parents[node]:
-            path.append(node)
-            node = self.parents[node]
-            
-        for n in path:
-            self.parents[n] = node
-        
-        return node
-    
-    def union(self, u, v):
-        root_u, root_v = self.find(u), self.find(v)
-        if root_u != root_v:
-            self.size -= 1
-            self.parents[root_u] = root_v
+# Method2.2: optimal UnionFind, simple compression
+class Solution:
+def validTree(self, n: int, edges: List[List[int]]) -> bool:
+    if len(edges) != n - 1:
+        return False
+
+    self.parents = {i:i for i in range(n)}
+    self.size = n
+
+    for u, v in edges:
+        self.union(u, v)
+
+    return self.size == 1;
+
+def find(self, node):
+    path = []
+    while node != self.parents[node]:
+        path.append(node)
+        node = self.parents[node]
+
+    for n in path:
+        self.parents[n] = node
+
+    return node
+
+def union(self, u, v):
+    root_u, root_v = self.find(u), self.find(v)
+    if root_u != root_v:
+        self.size -= 1
+        self.parents[root_u] = root_v
             
             
     
