@@ -1,13 +1,4 @@
-
-"""
-Definition of TreeNode:
-class TreeNode:
-    def __init__(self, val):
-        self.val = val
-        self.left, self.right = None, None
-"""
-
-
+#1. Elegant Way
 class Solution:
     """
     @param: root: The root of the binary search tree.
@@ -32,3 +23,37 @@ class Solution:
             return right
             
         return None
+
+#2. My Way
+class Solution:
+    """
+    @param: root: The root of the binary search tree.
+    @param: A: A TreeNode in a Binary.
+    @param: B: A TreeNode in a Binary.
+    @return: Return the least common ancestor(LCA) of the two nodes.
+    """
+    def lowestCommonAncestor(self, root, A, B):
+        if not root:
+            return None
+            
+        self.ans = root
+        
+        self.helper(root, A, B)
+        
+        return self.ans
+        
+    def helper(self, node, A, B):
+        if node is None:
+            return False, False
+            
+        l_hasA, l_hasB = self.helper(node.left, A, B)
+        r_hasA, r_hasB = self.helper(node.right, A, B)
+        
+        hasA = (node == A or l_hasA or r_hasA)
+        hasB = (node == B or l_hasB or r_hasB)
+        
+        if hasA and hasB:
+            self.ans = node
+            return False, False
+        
+        return hasA, hasB
